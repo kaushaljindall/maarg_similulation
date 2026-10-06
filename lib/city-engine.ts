@@ -277,7 +277,7 @@ export class CityEngine {
         v: 12,
         vmax: kind === "ambulance" ? 16 : 13,
         len: 6,
-        color: k === "ambulance" ? "#ffffff" : k === "vip" ? "#0b0f17" : "#3d8bfd",
+        color: k === "ambulance" ? "#ffffff" : k === "vip" ? "var(--background)" : "var(--primary)",
         stopped: false,
         wait: 0,
         route,
@@ -701,7 +701,7 @@ export class CityEngine {
   ) {
     const W = this.width;
     const H = this.height;
-    ctx.fillStyle = "#06101d";
+    ctx.fillStyle = "var(--background)";
     ctx.fillRect(0, 0, W, H);
 
     ctx.fillStyle = "#0b1829";
@@ -736,7 +736,7 @@ export class CityEngine {
       drawn.add(key);
       const A = this.nodes[e.from];
       const B = this.nodes[e.to];
-      ctx.strokeStyle = "#16263c";
+      ctx.strokeStyle = "var(--surface-3)";
       ctx.lineWidth = roadW;
       ctx.beginPath();
       ctx.moveTo(A.x, A.y);
@@ -784,13 +784,13 @@ export class CityEngine {
     if (this.hospitalNode >= 0) {
       const h = this.nodes[this.hospitalNode];
       ctx.fillStyle = "#0e2a1f";
-      ctx.strokeStyle = "#2fbf71";
+      ctx.strokeStyle = "var(--success)";
       ctx.fillRect(h.x - 14, h.y - 44, 28, 28);
       ctx.strokeRect(h.x - 14, h.y - 44, 28, 28);
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(h.x - 2.5, h.y - 38, 5, 16);
       ctx.fillRect(h.x - 8, h.y - 32.5, 16, 5);
-      ctx.fillStyle = "#8ea3c0";
+      ctx.fillStyle = "var(--muted)";
       ctx.font = "10px ui-monospace, monospace";
       ctx.textAlign = "center";
       ctx.fillText("HOSPITAL", h.x, h.y - 50);
@@ -801,19 +801,19 @@ export class CityEngine {
       ctx.fillStyle = j === opts.selected ? "#1d3a63" : "#13233a";
       ctx.fillRect(n.x - 14, n.y - 14, 28, 28);
       if (s.corridor !== "none") {
-        ctx.strokeStyle = s.corridor === "recovery" ? "#8ea3c0" : this.mode === "vip" ? "#3d8bfd" : "#2fbf71";
+        ctx.strokeStyle = s.corridor === "recovery" ? "var(--muted)" : this.mode === "vip" ? "var(--primary)" : "var(--success)";
         ctx.lineWidth = 2;
         ctx.strokeRect(n.x - 17, n.y - 17, 34, 34);
       }
       if (j === opts.selected) {
-        ctx.strokeStyle = "#e7eef8";
+        ctx.strokeStyle = "var(--foreground)";
         ctx.lineWidth = 1.5;
         ctx.strokeRect(n.x - 20, n.y - 20, 40, 40);
       }
       const col = (axis: Axis) => {
-        if (s.state === "allred") return "#e5484d";
-        if (s.phase !== axis) return "#e5484d";
-        return s.state === "green" ? "#2fbf71" : "#f2a93b";
+        if (s.state === "allred") return "var(--danger)";
+        if (s.phase !== axis) return "var(--danger)";
+        return s.state === "green" ? "var(--success)" : "var(--edge)";
       };
       const ns = col("NS");
       const ew = col("EW");
@@ -827,14 +827,14 @@ export class CityEngine {
       lamp(n.x + 9, n.y + 18, ns);
       lamp(n.x - 18, n.y + 9, ew);
       lamp(n.x + 18, n.y - 9, ew);
-      ctx.fillStyle = "#f2a93b";
+      ctx.fillStyle = "var(--edge)";
       ctx.fillRect(n.x + 15, n.y - 22, 6, 6);
       ctx.font = "600 10px ui-monospace, monospace";
       ctx.textAlign = "left";
-      ctx.fillStyle = "#e7eef8";
+      ctx.fillStyle = "var(--foreground)";
       ctx.fillText(n.id, n.x + 22, n.y + 30);
       if (opts.timers) {
-        ctx.fillStyle = s.state === "green" ? "#2fbf71" : s.state === "yellow" ? "#f2a93b" : "#e5484d";
+        ctx.fillStyle = s.state === "green" ? "var(--success)" : s.state === "yellow" ? "var(--edge)" : "var(--danger)";
         const label = s.state === "green" ? `${s.phase} ${Math.max(0, Math.ceil(s.planned - s.t))}s${s.extended ? ` +${s.extended}` : ""}` : s.state === "yellow" ? `${s.phase} YEL` : "ALL-RED";
         ctx.fillText(s.priority ? (s.priority.by === "emergency" ? "PRIORITY" : "VIP PRI") : label, n.x + 22, n.y + 42);
       }
@@ -842,7 +842,7 @@ export class CityEngine {
 
     if (opts.cameras) {
       for (const c of this.cameras) {
-        ctx.fillStyle = "#3d8bfd";
+        ctx.fillStyle = "var(--primary)";
         ctx.beginPath();
         ctx.arc(c.x, c.y, 3, 0, Math.PI * 2);
         ctx.fill();
@@ -872,11 +872,11 @@ export class CityEngine {
         ctx.fillStyle = v.color;
         ctx.fillRect(-l, -w / 2 - 0.5, l, w + 1);
         if (v.kind === "ambulance") {
-          ctx.fillStyle = Math.sin(this.t * 14) > 0 ? "#e5484d" : "#3d8bfd";
+          ctx.fillStyle = Math.sin(this.t * 14) > 0 ? "var(--danger)" : "var(--primary)";
           ctx.fillRect(-l / 2 - 1, -w / 2, 2, w);
         }
         if (v.kind === "vip") {
-          ctx.strokeStyle = "#f2a93b";
+          ctx.strokeStyle = "var(--edge)";
           ctx.lineWidth = 1;
           ctx.strokeRect(-l, -w / 2 - 0.5, l, w + 1);
         }
@@ -886,18 +886,18 @@ export class CityEngine {
 
     if (opts.cloudBand) {
       const c = this.cloud;
-      ctx.fillStyle = "#0c1f3a";
-      ctx.strokeStyle = "#3d8bfd";
+      ctx.fillStyle = "var(--surface-2)";
+      ctx.strokeStyle = "var(--primary)";
       ctx.lineWidth = 1.2;
       ctx.beginPath();
       ctx.roundRect(c.x, c.y, c.w, c.h, 12);
       ctx.fill();
       ctx.stroke();
-      ctx.fillStyle = "#e7eef8";
+      ctx.fillStyle = "var(--foreground)";
       ctx.font = "600 12px system-ui, sans-serif";
       ctx.textAlign = "center";
       ctx.fillText("MAARG CITY INTELLIGENCE CLOUD", c.x + c.w / 2, c.y + 26);
-      ctx.fillStyle = "#8ea3c0";
+      ctx.fillStyle = "var(--muted)";
       ctx.font = "10px ui-monospace, monospace";
       ctx.fillText(`Kafka ingest · ${this.observations} obs · ${this.decisions} timing decisions`, c.x + c.w / 2, c.y + 44);
     }
@@ -911,7 +911,7 @@ export class CityEngine {
         if (!a || !b) continue;
         const x = a[0] + (b[0] - a[0]) * f;
         const y = a[1] + (b[1] - a[1]) * f;
-        ctx.fillStyle = p.kind === "decision" ? "#2fbf71" : "#3d8bfd";
+        ctx.fillStyle = p.kind === "decision" ? "var(--success)" : "var(--primary)";
         ctx.fillRect(x - 2.5, y - 2.5, 5, 5);
         ctx.strokeStyle = p.kind === "decision" ? "rgba(47,191,113,0.25)" : "rgba(61,139,253,0.18)";
         ctx.lineWidth = 1;

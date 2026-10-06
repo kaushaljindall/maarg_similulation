@@ -115,7 +115,7 @@ export function CameraCapture() {
             ))}
             <path d={`M 440 ${HY} L 60 ${BY}`} stroke="#c8d3e2" strokeOpacity={0.7} strokeWidth={3} />
             <path d={`M 520 ${HY} L 900 ${BY}`} stroke="#c8d3e2" strokeOpacity={0.7} strokeWidth={3} />
-            <line x1={edges(COUNT_Y)[0]} x2={edges(COUNT_Y)[1]} y1={COUNT_Y} y2={COUNT_Y} stroke="#2fbf71" strokeDasharray="8 6" strokeWidth={2} />
+            <line x1={edges(COUNT_Y)[0]} x2={edges(COUNT_Y)[1]} y1={COUNT_Y} y2={COUNT_Y} stroke="var(--success)" strokeDasharray="8 6" strokeWidth={2} />
             <text x={edges(COUNT_Y)[1] - 150} y={COUNT_Y - 8} fontSize={12} className="fill-success font-mono">
               virtual count line
             </text>
@@ -139,24 +139,24 @@ export function CameraCapture() {
               return (
                 <g key={v.id}>
                   <rect x={x} y={top} width={w} height={h} rx={w * 0.12} fill={v.color} />
-                  <rect x={x + w * 0.12} y={top + h * 0.1} width={w * 0.76} height={h * 0.32} rx={w * 0.05} fill="#0a1424" opacity={0.8} />
+                  <rect x={x + w * 0.12} y={top + h * 0.1} width={w * 0.76} height={h * 0.32} rx={w * 0.05} fill="var(--surface-2)" opacity={0.8} />
                   <rect x={x + w * 0.06} y={top + h * 0.62} width={w * 0.16} height={h * 0.1} fill="#f6e7b0" opacity={0.9} />
                   <rect x={x + w * 0.78} y={top + h * 0.62} width={w * 0.16} height={h * 0.1} fill="#f6e7b0" opacity={0.9} />
                   {v.type !== "bike" && (
                     <>
-                      <rect x={cx - w * 0.18} y={top + h * 0.78} width={w * 0.36} height={h * 0.13} fill="#f5f5f0" stroke={big ? "#f2a93b" : "none"} strokeWidth={1.5} />
+                      <rect x={cx - w * 0.18} y={top + h * 0.78} width={w * 0.36} height={h * 0.13} fill="#f5f5f0" stroke={big ? "var(--edge)" : "none"} strokeWidth={1.5} />
                       {big && (
-                        <text x={cx} y={top + h * 0.78 + h * 0.1} textAnchor="middle" fontSize={Math.max(7, w * 0.055)} fontWeight={700} fill="#0a1424" className="font-mono">
+                        <text x={cx} y={top + h * 0.78 + h * 0.1} textAnchor="middle" fontSize={Math.max(7, w * 0.055)} fontWeight={700} fill="var(--surface-2)" className="font-mono">
                           {v.plate}
                         </text>
                       )}
                     </>
                   )}
-                  <rect x={x - 4} y={top - 4} width={w + 8} height={h + 8} fill="none" stroke={isFocus ? "#f2a93b" : "#3d8bfd"} strokeWidth={isFocus ? 2.5 : 1.5} />
+                  <rect x={x - 4} y={top - 4} width={w + 8} height={h + 8} fill="none" stroke={isFocus ? "var(--edge)" : "var(--primary)"} strokeWidth={isFocus ? 2.5 : 1.5} />
                   {w > 30 && (
                     <g transform={`translate(${x - 4} ${top - 22})`}>
-                      <rect width={Math.max(110, w + 8)} height={18} fill={isFocus ? "#f2a93b" : "#3d8bfd"} />
-                      <text x={5} y={13} fontSize={11} fontWeight={600} fill="#06101d" className="font-mono">
+                      <rect width={Math.max(110, w + 8)} height={18} fill={isFocus ? "var(--edge)" : "var(--primary)"} />
+                      <text x={5} y={13} fontSize={11} fontWeight={600} fill="var(--background)" className="font-mono">
                         {v.type} {v.conf.toFixed(2)} · #{v.id}
                       </text>
                     </g>
@@ -166,8 +166,8 @@ export function CameraCapture() {
             })}
 
             <g className="font-mono">
-              <rect x={16} y={14} width={250} height={74} fill="#06101d" opacity={0.75} />
-              <circle cx={32} cy={32} r={6} fill="#e5484d" className="blink" />
+              <rect x={16} y={14} width={250} height={74} fill="var(--background)" opacity={0.75} />
+              <circle cx={32} cy={32} r={6} fill="var(--danger)" className="blink" />
               <text x={46} y={37} fontSize={15} fontWeight={700} className="fill-foreground">
                 CAM_07 · REC
               </text>
@@ -177,7 +177,7 @@ export function CameraCapture() {
               <text x={28} y={77} fontSize={12} className="fill-muted">
                 Lane 2 · Northbound ↑
               </text>
-              <rect x={704} y={14} width={240} height={36} fill="#06101d" opacity={0.75} />
+              <rect x={704} y={14} width={240} height={36} fill="var(--background)" opacity={0.75} />
               <text x={716} y={37} fontSize={12} className="fill-muted">
                 GPS 30.7046 N, 76.7179 E
               </text>
@@ -253,7 +253,7 @@ export function CameraCapture() {
             <span className="font-mono text-[10px] text-edge">local network (metres away)</span>
             <div className="relative h-1 w-full overflow-hidden rounded bg-surface-3">
               <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 4" aria-hidden>
-                <line x1={0} x2={100} y1={2} y2={2} stroke="#f2a93b" strokeWidth={4} className="flow-line" />
+                <line x1={0} x2={100} y1={2} y2={2} stroke="var(--edge)" strokeWidth={4} className="flow-line" />
               </svg>
             </div>
             <ArrowRight className="mt-1 h-4 w-4 text-edge" aria-hidden />

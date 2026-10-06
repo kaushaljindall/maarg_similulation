@@ -38,8 +38,8 @@ export function RoadMapSvg({
           const b = node(e.b);
           return (
             <g key={`${e.a}${e.b}`}>
-              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#16263c" strokeWidth={16} strokeLinecap="round" />
-              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#2a4a72" strokeWidth={1.5} strokeDasharray="6 6" />
+              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="var(--surface-3)" strokeWidth={16} strokeLinecap="round" />
+              <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="var(--border-strong)" strokeWidth={1.5} strokeDasharray="6 6" />
               {showDistances && (
                 <text x={(a.x + b.x) / 2 + (a.x === b.x ? 10 : 0)} y={(a.y + b.y) / 2 + (a.y === b.y ? -12 : 0)} fontSize={9} className="fill-muted font-mono">
                   {e.m} m
@@ -53,7 +53,7 @@ export function RoadMapSvg({
         <path
           d={pathD}
           fill="none"
-          stroke="#2fbf71"
+          stroke="var(--success)"
           strokeWidth={4}
           strokeLinejoin="round"
           pathLength={1}
@@ -74,7 +74,7 @@ export function RoadMapSvg({
             onKeyDown={(e) => e.key === "Enter" && onSelect?.(n.id)}
             className={onSelect ? "cursor-pointer outline-none" : undefined}
           >
-            <rect x={n.x - 13} y={n.y - 13} width={26} height={26} rx={4} fill={selected === n.id ? "#1d3a63" : "#10223b"} stroke={selected === n.id ? "#e7eef8" : "#3d8bfd"} strokeOpacity={selected === n.id ? 1 : 0.6} />
+            <rect x={n.x - 13} y={n.y - 13} width={26} height={26} rx={4} fill={selected === n.id ? "#1d3a63" : "var(--surface-2)"} stroke={selected === n.id ? "var(--foreground)" : "var(--primary)"} strokeOpacity={selected === n.id ? 1 : 0.6} />
             <text x={n.x + 18} y={n.y - 14} fontSize={10.5} fontWeight={600} className="fill-foreground font-mono">
               {n.id}
             </text>
@@ -91,7 +91,7 @@ export function RoadMapSvg({
         MAP_NODES.filter((n) => n.kind === "camera").map((n) => {
           const active = activeCams.includes(n.id);
           const rejected = rejectedCams.includes(n.id);
-          const color = rejected ? "#e5484d" : active ? "#2fbf71" : "#3d8bfd";
+          const color = rejected ? "var(--danger)" : active ? "var(--success)" : "var(--primary)";
           return (
             <g
               key={n.id}
@@ -103,7 +103,7 @@ export function RoadMapSvg({
               className={onSelect ? "cursor-pointer outline-none" : undefined}
             >
               {active && <circle cx={n.x} cy={n.y} r={13} fill={color} opacity={0.18} />}
-              <circle cx={n.x} cy={n.y} r={7} fill="#06101d" stroke={color} strokeWidth={selected === n.id ? 3 : 2} />
+              <circle cx={n.x} cy={n.y} r={7} fill="var(--background)" stroke={color} strokeWidth={selected === n.id ? 3 : 2} />
               <circle cx={n.x} cy={n.y} r={2.5} fill={color} />
               <text x={n.x + 10} y={n.y + 16} fontSize={9.5} className="font-mono" fill={color}>
                 {n.id}

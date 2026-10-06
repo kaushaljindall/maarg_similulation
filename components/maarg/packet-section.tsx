@@ -104,8 +104,8 @@ export function PacketSection() {
               via Kafka
             </text>
           </CloudShape>
-          <path d={path} fill="none" stroke="#3d8bfd" strokeOpacity={0.5} strokeWidth={2} className="flow-line" />
-          <path d="M 190 160 L 300 160" stroke="#f2a93b" strokeWidth={3} className="flow-line" />
+          <path d={path} fill="none" stroke="var(--primary)" strokeOpacity={0.5} strokeWidth={2} className="flow-line" />
+          <path d="M 190 160 L 300 160" stroke="var(--edge)" strokeWidth={3} className="flow-line" />
           <text x={196} y={185} fontSize={10} className="fill-edge font-mono">
             video stays local
           </text>
@@ -113,8 +113,8 @@ export function PacketSection() {
             <g key={i} className="cursor-pointer" onClick={() => setOverlay("packet")} role="button" aria-label="Open observation packet">
               <g>
                 <animateMotion dur="3.9s" repeatCount="indefinite" begin={`${begin}s`} path={path} />
-                <rect x={-34} y={-13} width={68} height={26} rx={4} fill="#3d8bfd" />
-                <text x={0} y={4} textAnchor="middle" fontSize={10} fontWeight={600} fill="#06101d" className="font-mono">
+                <rect x={-34} y={-13} width={68} height={26} rx={4} fill="var(--primary)" />
+                <text x={0} y={4} textAnchor="middle" fontSize={10} fontWeight={600} fill="var(--background)" className="font-mono">
                   OBS-{10421 + i}
                 </text>
               </g>

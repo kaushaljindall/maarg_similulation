@@ -16,7 +16,7 @@ export function KafkaStream() {
   const [parts, setParts] = useState<Msg[][]>(() =>
     [0, 1, 2, 3].map((p) => Array.from({ length: 6 }, (_, i) => ({ id: 10400 + p * 6 + i, offset: 884200 + i, fresh: false }))),
   );
-  const [next, setNext] = useState(10421);
+  const [next, setNext] = useState(10424);
   const [last, setLast] = useState(-1);
   const [rates, setRates] = useState([0, 0, 0, 0]);
 

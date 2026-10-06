@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #06101d;
-  --surface: #0b1a2e;
-  --surface-2: #10223b;
-  --surface-3: #16304f;
-  --border: #1c3454;
-  --border-strong: #2a4a72;
-  --foreground: #e7eef8;
-  --muted: #8ea3c0;
-  --primary: #3d8bfd;
-  --edge: #f2a93b;
-  --success: #2fbf71;
-  --warning: #f2a93b;
-  --danger: #e5484d;
-  --road: #1a2a40;
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --surface-2: #f1f5f9;
+  --surface-3: #e2e8f0;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --edge: #d97706;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --road: #e2e8f0;
 }
 
 @theme inline {
@@ -38,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {

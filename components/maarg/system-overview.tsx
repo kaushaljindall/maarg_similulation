@@ -188,20 +188,20 @@ export function SystemOverview() {
       <svg ref={ref} viewBox="0 0 1200 560" className="block w-full grid-bg" role="img" aria-label="Animated MAARG pipeline: cameras send video to edge servers, which send observations through Kafka to the MAARG cloud, which sends timing plans to the signal controller.">
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,0 L10,5 L0,10 z" fill="#2a4a72" />
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--border-strong)" />
           </marker>
         </defs>
 
-        <rect x={0} y={88} width={1200} height={48} fill="#14243a" />
-        <line x1={0} x2={1200} y1={112} y2={112} stroke="#3a5274" strokeDasharray="14 12" />
+        <rect x={0} y={88} width={1200} height={48} fill="var(--surface-3)" />
+        <line x1={0} x2={1200} y1={112} y2={112} stroke="var(--border-strong)" strokeDasharray="14 12" />
         {J.map((jx) => (
           <g key={jx}>
-            <rect x={jx - 24} y={0} width={48} height={225} fill="#14243a" />
-            <line x1={jx} x2={jx} y1={0} y2={88} stroke="#3a5274" strokeDasharray="10 10" />
-            <line x1={jx} x2={jx} y1={136} y2={225} stroke="#3a5274" strokeDasharray="10 10" />
-            <rect x={jx - 24} y={88} width={48} height={48} fill="#182b45" />
-            <line x1={jx - 30} x2={jx - 30} y1={88} y2={112} stroke="#e7eef8" strokeWidth={2} opacity={0.6} />
-            <line x1={jx + 30} x2={jx + 30} y1={112} y2={136} stroke="#e7eef8" strokeWidth={2} opacity={0.6} />
+            <rect x={jx - 24} y={0} width={48} height={225} fill="var(--surface-3)" />
+            <line x1={jx} x2={jx} y1={0} y2={88} stroke="var(--border-strong)" strokeDasharray="10 10" />
+            <line x1={jx} x2={jx} y1={136} y2={225} stroke="var(--border-strong)" strokeDasharray="10 10" />
+            <rect x={jx - 24} y={88} width={48} height={48} fill="var(--surface-3)" />
+            <line x1={jx - 30} x2={jx - 30} y1={88} y2={112} stroke="var(--foreground)" strokeWidth={2} opacity={0.6} />
+            <line x1={jx + 30} x2={jx + 30} y1={112} y2={136} stroke="var(--foreground)" strokeWidth={2} opacity={0.6} />
           </g>
         ))}
 
@@ -231,13 +231,13 @@ export function SystemOverview() {
         {CAM.map((cx, i) => (
           <g key={cx} role="button" tabIndex={0} aria-label={`CAM_0${i + 1}: what does the camera do?`} className={clickable} onClick={() => openSpec("camera")} onKeyDown={(e) => e.key === "Enter" && openSpec("camera")}>
             <CctvCamera x={cx} y={46} label={`CAM_0${i + 1}`} />
-            <path d={`M ${cx + 30} 44 L ${cx + 120} 100 L ${cx + 40} 100 Z`} fill="#3d8bfd" opacity={0.08} />
+            <path d={`M ${cx + 30} 44 L ${cx + 120} 100 L ${cx + 40} 100 Z`} fill="var(--primary)" opacity={0.08} />
           </g>
         ))}
 
         {CAM.map((cx, i) => (
           <g key={`v${cx}`}>
-            <path d={`M ${cx} 82 C ${cx} 180, ${J[i] - 40} 200, ${J[i] - 30} ${EDGE_Y}`} fill="none" stroke="#f2a93b" strokeWidth={3} className="flow-line" opacity={0.85} />
+            <path d={`M ${cx} 82 C ${cx} 180, ${J[i] - 40} 200, ${J[i] - 30} ${EDGE_Y}`} fill="none" stroke="var(--edge)" strokeWidth={3} className="flow-line" opacity={0.85} />
             <text x={(cx + J[i]) / 2 - 40} y={200} fontSize={9} className="fill-edge font-mono">
               RAW VIDEO · local
             </text>
@@ -247,7 +247,7 @@ export function SystemOverview() {
         {J.map((jx, i) => (
           <g key={`e${jx}`} role="button" tabIndex={0} aria-label={`EDGE_J0${i + 1}: open edge explainer`} className={clickable} onClick={() => setOverlay("edge-explainer")} onKeyDown={(e) => e.key === "Enter" && setOverlay("edge-explainer")}>
             <ServerRack x={jx - 30} y={EDGE_Y - 10} w={60} h={52} active />
-            <rect x={jx + 36} y={EDGE_Y - 6} width={128} height={44} rx={4} fill="#0d1b30" stroke="#f2a93b" strokeOpacity={0.35} />
+            <rect x={jx + 36} y={EDGE_Y - 6} width={128} height={44} rx={4} fill="var(--surface)" stroke="var(--edge)" strokeOpacity={0.35} />
             <text x={jx + 44} y={EDGE_Y + 9} fontSize={10} fontWeight={600} className="fill-edge font-mono">
               EDGE_J0{i + 1}
             </text>
@@ -261,11 +261,11 @@ export function SystemOverview() {
         ))}
 
         {J.map((jx) => (
-          <line key={`k${jx}`} x1={jx} x2={jx} y1={EDGE_Y + 44} y2={KAFKA_Y} stroke="#2a4a72" markerEnd="url(#arr)" />
+          <line key={`k${jx}`} x1={jx} x2={jx} y1={EDGE_Y + 44} y2={KAFKA_Y} stroke="var(--border-strong)" markerEnd="url(#arr)" />
         ))}
 
         <g role="button" tabIndex={0} aria-label="Apache Kafka: what does it do?" className={clickable} onClick={() => openSpec("kafka")} onKeyDown={(e) => e.key === "Enter" && openSpec("kafka")}>
-          <rect x={300} y={KAFKA_Y} width={720} height={28} rx={4} fill="#0d2a1f" stroke="#2fbf71" strokeOpacity={0.6} />
+          <rect x={300} y={KAFKA_Y} width={720} height={28} rx={4} fill="var(--surface)" stroke="var(--success)" strokeOpacity={0.6} />
           <text x={316} y={KAFKA_Y + 18} fontSize={11} fontWeight={600} className="fill-success font-mono">
             APACHE KAFKA
           </text>
@@ -273,7 +273,7 @@ export function SystemOverview() {
             topic maarg.observations · {s.obsCount.toLocaleString("en-IN")} events
           </text>
         </g>
-        <line x1={660} x2={660} y1={KAFKA_Y + 28} y2={CLOUD.y} stroke="#2a4a72" markerEnd="url(#arr)" />
+        <line x1={660} x2={660} y1={KAFKA_Y + 28} y2={CLOUD.y} stroke="var(--border-strong)" markerEnd="url(#arr)" />
 
         <g role="button" tabIndex={0} aria-label="MAARG cloud: what happens here?" className={clickable} onClick={() => openSpec("association")} onKeyDown={(e) => e.key === "Enter" && openSpec("association")}>
           <CloudShape x={CLOUD.x} y={CLOUD.y} w={CLOUD.w} h={CLOUD.h}>
@@ -282,7 +282,7 @@ export function SystemOverview() {
             </text>
             {["Ingestion", "Association", "Trajectory", "Analytics", "Prediction", "Signal optimisation"].map((m, i) => (
               <g key={m} transform={`translate(${20 + (i % 3) * 176} ${44 + Math.floor(i / 3) * 34})`}>
-                <rect width={164} height={26} rx={4} fill="#10284a" stroke="#3d8bfd" strokeOpacity={0.35} />
+                <rect width={164} height={26} rx={4} fill="var(--surface-2)" stroke="var(--primary)" strokeOpacity={0.35} />
                 <text x={10} y={17} fontSize={10.5} className="fill-foreground font-mono">
                   {m}
                 </text>
@@ -292,7 +292,7 @@ export function SystemOverview() {
         </g>
 
         <g role="button" tabIndex={0} aria-label="Signal controller: what does it do?" className={clickable} onClick={() => openSpec("controller")} onKeyDown={(e) => e.key === "Enter" && openSpec("controller")}>
-          <rect x={CTRL.x} y={CTRL.y} width={CTRL.w} height={CTRL.h} rx={6} fill="#0d2a1f" stroke="#2fbf71" strokeOpacity={0.7} />
+          <rect x={CTRL.x} y={CTRL.y} width={CTRL.w} height={CTRL.h} rx={6} fill="var(--surface)" stroke="var(--success)" strokeOpacity={0.7} />
           <text x={CTRL.x + 12} y={CTRL.y + 22} fontSize={11} fontWeight={600} className="fill-success font-mono">
             SIGNAL CONTROLLER
           </text>
@@ -306,8 +306,8 @@ export function SystemOverview() {
             plan from MAARG
           </text>
         </g>
-        <path d={`M ${CLOUD.x + CLOUD.w} ${CLOUD.y + 60} L ${CTRL.x} ${CTRL.y + 42}`} stroke="#2fbf71" strokeOpacity={0.4} fill="none" markerEnd="url(#arr)" />
-        <path d={`M ${CTRL.x + CTRL.w / 2} ${CTRL.y} L ${CTRL.x + CTRL.w / 2} 70 L ${J[1] + 46} 70`} stroke="#2fbf71" strokeOpacity={0.4} fill="none" strokeDasharray="4 6" />
+        <path d={`M ${CLOUD.x + CLOUD.w} ${CLOUD.y + 60} L ${CTRL.x} ${CTRL.y + 42}`} stroke="var(--success)" strokeOpacity={0.4} fill="none" markerEnd="url(#arr)" />
+        <path d={`M ${CTRL.x + CTRL.w / 2} ${CTRL.y} L ${CTRL.x + CTRL.w / 2} 70 L ${J[1] + 46} 70`} stroke="var(--success)" strokeOpacity={0.4} fill="none" strokeDasharray="4 6" />
 
         {s.packets.map((p, i) => {
           const [x, y] = pointAlong(p.pts, p.p);
@@ -322,7 +322,7 @@ export function SystemOverview() {
               aria-label={isObs ? `Observation packet ${p.label}: view data inside` : "Timing plan packet"}
             >
               <circle r={12} fill="transparent" />
-              <rect x={-6} y={-6} width={12} height={12} rx={2} fill={isObs ? "#3d8bfd" : "#2fbf71"} />
+              <rect x={-6} y={-6} width={12} height={12} rx={2} fill={isObs ? "var(--primary)" : "var(--success)"} />
               <text x={10} y={4} fontSize={9} className={isObs ? "fill-primary font-mono" : "fill-success font-mono"}>
                 {p.label}
               </text>
@@ -332,7 +332,7 @@ export function SystemOverview() {
 
         {s.banner && (
           <g transform="translate(560 160)">
-            <rect width={630} height={32} rx={6} fill="#0d2a1f" stroke="#2fbf71" />
+            <rect width={630} height={32} rx={6} fill="var(--surface)" stroke="var(--success)" />
             <text x={14} y={20} fontSize={11.5} fontWeight={600} className="fill-success font-mono">
               MAARG DECISION · {s.banner.text}
             </text>

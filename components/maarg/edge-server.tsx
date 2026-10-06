@@ -92,7 +92,7 @@ const STAGES: Stage[] = [
     title: "Plate detection",
     techId: "plate",
     diagram: (
-      <div className="inline-block rounded-sm border-2 border-edge bg-[#f5f5f0] px-2 py-0.5 font-mono text-xs font-bold text-[#0a1424]">
+      <div className="inline-block rounded-sm border-2 border-edge bg-[#f5f5f0] px-2 py-0.5 font-mono text-xs font-bold text-[var(--surface-2)]">
         DL01AB1234
       </div>
     ),

@@ -193,23 +193,23 @@ export function DynamicSignal() {
                   <rect x={x + 160} y={y + 150} width={100} height={110} fill="#0e1f36" />
                 </g>
               ))}
-              <rect x={300} y={0} width={120} height={720} fill="#16263c" />
-              <rect x={0} y={300} width={720} height={120} fill="#16263c" />
+              <rect x={300} y={0} width={120} height={720} fill="var(--surface-3)" />
+              <rect x={0} y={300} width={720} height={120} fill="var(--surface-3)" />
               <line x1={360} x2={360} y1={0} y2={300} stroke="#c8d3e2" strokeOpacity={0.6} strokeWidth={2} />
               <line x1={360} x2={360} y1={420} y2={720} stroke="#c8d3e2" strokeOpacity={0.6} strokeWidth={2} />
               <line x1={0} x2={300} y1={360} y2={360} stroke="#c8d3e2" strokeOpacity={0.6} strokeWidth={2} />
               <line x1={420} x2={720} y1={360} y2={360} stroke="#c8d3e2" strokeOpacity={0.6} strokeWidth={2} />
               {[320, 340, 380, 400].map((x) => (
-                <line key={`v${x}`} x1={x} x2={x} y1={0} y2={300} stroke="#3a5274" strokeDasharray="8 10" />
+                <line key={`v${x}`} x1={x} x2={x} y1={0} y2={300} stroke="var(--border-strong)" strokeDasharray="8 10" />
               ))}
               {[380, 400, 320, 340].map((y) => (
-                <line key={`h${y}`} x1={420} x2={720} y1={y} y2={y} stroke="#3a5274" strokeDasharray="8 10" />
+                <line key={`h${y}`} x1={420} x2={720} y1={y} y2={y} stroke="var(--border-strong)" strokeDasharray="8 10" />
               ))}
-              <line x1={360} x2={420} y1={298} y2={298} stroke="#e7eef8" strokeWidth={3} />
-              <line x1={422} x2={422} y1={360} y2={420} stroke="#e7eef8" strokeWidth={3} />
+              <line x1={360} x2={420} y1={298} y2={298} stroke="var(--foreground)" strokeWidth={3} />
+              <line x1={422} x2={422} y1={360} y2={420} stroke="var(--foreground)" strokeWidth={3} />
               <rect x={300} y={300} width={120} height={120} fill="#1a2c46" />
 
-              <line x1={430} x2={430} y1={camY} y2={300} stroke="#3d8bfd" strokeDasharray="3 4" />
+              <line x1={430} x2={430} y1={camY} y2={300} stroke="var(--primary)" strokeDasharray="3 4" />
               <text x={436} y={(camY + 300) / 2} fontSize={11} className="fill-primary font-mono">
                 {up[0].d} m
               </text>
@@ -218,7 +218,7 @@ export function DynamicSignal() {
                 const lane = s.ns.findIndex((l) => l.includes(v));
                 const y = v.x * PX;
                 if (y < -20 || y > 740) return null;
-                return <rect key={v.id} x={364 + lane * 20} y={y - 9} width={11} height={18} rx={2} fill={v.stops > 0 ? "#e5484d" : v.color} />;
+                return <rect key={v.id} x={364 + lane * 20} y={y - 9} width={11} height={18} rx={2} fill={v.stops > 0 ? "var(--danger)" : v.color} />;
               })}
               {s.ew.flat().map((v) => {
                 const lane = s.ew.findIndex((l) => l.includes(v));
@@ -239,7 +239,7 @@ export function DynamicSignal() {
               <TrafficLight x={450} y={448} state={ph.ew} horizontal />
 
               <g transform="translate(560 30)">
-                <rect width={150} height={50} rx={8} fill="#0c1f3a" stroke="#3d8bfd" />
+                <rect width={150} height={50} rx={8} fill="var(--surface-2)" stroke="var(--primary)" />
                 <text x={75} y={22} textAnchor="middle" fontSize={12} fontWeight={600} className="fill-foreground">
                   MAARG
                 </text>
@@ -247,11 +247,11 @@ export function DynamicSignal() {
                   prediction · optimiser
                 </text>
               </g>
-              {pk1 && <rect x={pk1[0] - 6} y={pk1[1] - 6} width={12} height={12} rx={2} fill="#3d8bfd" />}
-              {pk2 && <rect x={pk2[0] - 6} y={pk2[1] - 6} width={12} height={12} rx={2} fill="#2fbf71" />}
+              {pk1 && <rect x={pk1[0] - 6} y={pk1[1] - 6} width={12} height={12} rx={2} fill="var(--primary)" />}
+              {pk2 && <rect x={pk2[0] - 6} y={pk2[1] - 6} width={12} height={12} rx={2} fill="var(--success)" />}
 
               <g transform="translate(20 20)">
-                <rect width={196} height={92} rx={8} fill="#06101d" stroke="#2a4a72" />
+                <rect width={196} height={92} rx={8} fill="var(--background)" stroke="var(--border-strong)" />
                 <text x={14} y={24} fontSize={11} className="fill-muted font-mono">
                   J-04 · t = {s.t.toFixed(1)} s
                 </text>
